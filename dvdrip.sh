@@ -3,6 +3,18 @@
 DVD="/dev/sr0"
 OUTDIR="/run/media/tomcatmi/Data/dvd"
 
+# Check if the DVD path exists and is readable
+if [ ! -r "$DVD" ]; then
+  echo "Error: $DVD is not readable or does not exist."
+  exit 1
+fi
+
+# Check if the output directory exists and is writable
+if [ ! -w "$OUTDIR" ]; then
+  echo "Error: $OUTDIR is not writable or does not exist."
+  exit 1
+fi
+
 while true; do
   # Prompt the user for the output filename and modify it as necessary
   read -p "Enter a filename for the DVD image: " filename
